@@ -10,38 +10,38 @@ PART I : How to request permission to access HealthKit data, as well as read and
 
 (A) SETUP:
 
-	•	Assigning a Team
+• Assigning a Team
 HealthKit is a special framework. Your app can’t use it unless you have an active developer account. Once you have a developer account, you can assign your team.
-	•	Entitlements
+• Entitlements
 HealthKit also has its own set of entitlements, and you will need to enable them in order to build apps that use the framework.
 Open the Capabilities tab in the target editor, and turn on the HealthKit switch
 
 
 (B) PERMISSIONS:
 
-	⁃	HealthKit deals with sensitive and private data. 
-	⁃	has a robust privacy system. 
-	⁃	only has access to the kinds of data your users agree to share with it.
+⁃HealthKit deals with sensitive and private data. 
+⁃has a robust privacy system. 
+⁃only has access to the kinds of data your users agree to share with it.
 
-	0.	Updating the Share Usage Descriptions
+Updating the Share Usage Descriptions
 First, you need to describe why you are asking for health metrics from your users.
 
 Open Info.plist and  add the following keys:
-	•	Privacy – Health Share Usage Description : corresponds to data to be read from HealthKit.
-	•	Privacy – Health Update Usage Description :  corresponds to data that gets written to HealthKit.
+•Privacy – Health Share Usage Description : corresponds to data to be read from HealthKit.
+•Privacy – Health Update Usage Description :  corresponds to data that gets written to HealthKit.
 
-	⁃	Both keys store text that display when the HeathKit authorization screen appears. 
-	⁃	You can put anything you want in there. For example, “We will use your health information to better track Prancercise workouts.”
-	⁃	If those keys aren’t set, your app will crash when attempting to authorize HealthKit.
+⁃Both keys store text that display when the HeathKit authorization screen appears. 
+⁃You can put anything you want in there. For example, “We will use your health information to better track Prancercise workouts.”
+⁃If those keys aren’t set, your app will crash when attempting to authorize HealthKit.
 
 (C) AUTHORIZING HEALTHKIT:
 
 To authorize HealthKit, the authorizeHealthKit(completion:) method will need to do these four things:
 
-	▪	Check to see if Healthkit is available on this device. If it isn’t, complete with failure and an error.
-	▪	Prepare the types of health data Prancercise Tracker will read and write to HealthKit.
-	▪	Organize those data into a list of types to be read and types to be written.
-	▪	Request Authorization. If it’s successful, complete with success.
+▪Check to see if Healthkit is available on this device. If it isn’t, complete with failure and an error.
+▪Prepare the types of health data Prancercise Tracker will read and write to HealthKit.
+▪Organize those data into a list of types to be read and types to be written.
+▪Request Authorization. If it’s successful, complete with success.
 
 
 1. Checking HealthKit availability
