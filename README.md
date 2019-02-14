@@ -10,14 +10,14 @@ PART I : How to request permission to access HealthKit data, as well as read and
 
 (A) SETUP:
 
-• Assigning a Team
+	• Assigning a Team
 
-HealthKit is a special framework. Your app can’t use it unless you have an active developer account. Once you have a developer account, you can assign your team.
+		HealthKit is a special framework. Your app can’t use it unless you have an active developer account. Once you have a developer account, you can assign your team.
 
-• Entitlements
+	• Entitlements
 
-HealthKit also has its own set of entitlements, and you will need to enable them in order to build apps that use the framework.
-Open the Capabilities tab in the target editor, and turn on the HealthKit switch
+		HealthKit also has its own set of entitlements, and you will need to enable them in order to build apps that use the framework.
+		Open the Capabilities tab in the target editor, and turn on the HealthKit switch
 
 
 (B) PERMISSIONS:
