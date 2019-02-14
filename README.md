@@ -77,13 +77,13 @@ If a single characteristic or sample type is not available, the method will comp
 
 	•	HKSampleType:
 	
-		⁃ HealthKit expects a set of HKSampleType objects that represent the kinds of data your user can write
-		⁃ it also expects a set of HKObjectType objects for your app to read
+			⁃ HealthKit expects a set of HKSampleType objects that represent the kinds of data your user can write
+			⁃ it also expects a set of HKObjectType objects for your app to read
 
 	•	HKObjectType.workoutType():
 	
-		⁃ a special kind of HKObjectType
-		⁃ represents any kind of workout
+			⁃ a special kind of HKObjectType
+			⁃ represents any kind of workout
 
 4. Request Authorization :
 
@@ -121,8 +121,8 @@ READ THOSE CHARACTERISTICS INTO YOUR APPLICATION
 
 	1. Create an instance of HKHealthStore
 	2. Access different biological characteristics using healthKitStore.dateOfBirthComponents() , healthKitStore.biologicalSex(), healthKitStore.bloodType() and so on. These method can throw an error whenever the date of birth, biological sex, or blood type haven’t been saved in HealthKit’s central repository. If you have entered this information into your Health app, no error should be thrown.
-	3.	You may use Calendar to calculate age using current date and dat of birth 
-	4.	Unwrap the wrappers to get the underlying enum values. For example :
+	3. You may use Calendar to calculate age using current date and dat of birth 
+	4. Unwrap the wrappers to get the underlying enum values. For example :
              let unwrappedBiologicalSex = biologicalSex.biologicalSex
              let unwrappedBloodType = bloodType.bloodType
        from a wrapper class (HKBiologicalSexObject and HKBloodTypeObject).
@@ -207,11 +207,11 @@ PART 2: WORKOUTS
 	
 	⁃ It’s some period of time in which you increase physical exertion doing some sort of activity.
 	⁃ Most workouts have one more of the following attributes:
-	1.	Activity type (running, cycling, Prancercising, etc.)
-	2.	Distance
-	3.	Start and end time
-	4.	Duration
-	5.	Energy burned
+	1.Activity type (running, cycling, Prancercising, etc.)
+	2.Distance
+	3.Start and end time
+	4.Duration
+	5.Energy burned
 
 	•HealthKit 
 	
@@ -252,7 +252,7 @@ FUNCTIONS :
 
 	• predicateForObjects(from: )
 
-		⁃ ives you a predicate for workouts from a certain HKSource.
+		⁃ gives you a predicate for workouts from a certain HKSource.
 		⁃ KSource denotes the app that provided the workout data to HealthKit. Can be specified by:
 		      name :  The name of the source represented by the receiver.  If the source is an app, then the name is the
 			    localized name of the app.
@@ -263,7 +263,7 @@ FUNCTIONS :
 
 	• NSCompoundPredicate.
 
-		⁃ pvides a way to bring one or more filters together.
+		⁃ provides a way to bring one or more filters together.
 		⁃ n the sample app , the final result is a query that gets you all workouts with other as the activity type and Prancercise Tracker as the source app.
 
 	•NSSortDescriptor(key: , ascending:)
@@ -351,7 +351,7 @@ Contents of Files :
 		⁃save samples to HealthKit
 
 	•ProfileViewController.swift
-	⁃Load and	 display biological characteristics and samples from healthKit
+		⁃Load and display biological characteristics and samples from healthKit
 
 	•WorkoutDataStore :
 		⁃save workouts to HealthKit 
