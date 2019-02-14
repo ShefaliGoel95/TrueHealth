@@ -31,8 +31,8 @@ First, you need to describe why you are asking for health metrics from your user
 
 Open Info.plist and  add the following keys:
 
-•Privacy – Health Share Usage Description : corresponds to data to be read from HealthKit.
-•Privacy – Health Update Usage Description :  corresponds to data that gets written to HealthKit.
+	•Privacy – Health Share Usage Description : corresponds to data to be read from HealthKit.
+	•Privacy – Health Update Usage Description :  corresponds to data that gets written to HealthKit.
 
 ⁃Both keys store text that display when the HeathKit authorization screen appears. 
 ⁃You can put anything you want in there. For example, “We will use your health information to better track Prancercise workouts.”
@@ -42,10 +42,10 @@ Open Info.plist and  add the following keys:
 
 To authorize HealthKit, the authorizeHealthKit(completion:) method will need to do these four things:
 
-▪Check to see if Healthkit is available on this device. If it isn’t, complete with failure and an error.
-▪Prepare the types of health data Prancercise Tracker will read and write to HealthKit.
-▪Organize those data into a list of types to be read and types to be written.
-▪Request Authorization. If it’s successful, complete with success.
+	▪Check to see if Healthkit is available on this device. If it isn’t, complete with failure and an error.
+	▪Prepare the types of health data Prancercise Tracker will read and write to HealthKit.
+	▪Organize those data into a list of types to be read and types to be written.
+	▪Request Authorization. If it’s successful, complete with success.
 
 
 1. Checking HealthKit availability
@@ -56,20 +56,20 @@ To authorize HealthKit, the authorizeHealthKit(completion:) method will need to 
 
 	•isHealthDataAvailable() :
 
-	method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
+		method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
 
 2. Preparing data types 
 
 	•HKObjectType : 
 	
-	⁃	HealthKit works with a type called HKObjectType. 
-	⁃	Every type that goes into and out HealthKit’s central repository is some kind of HKObjectType. 
-	⁃	HKSampleType and HKWorkoutType Both inherit from HKObjectType
+		⁃HealthKit works with a type called HKObjectType. 
+		⁃Every type that goes into and out HealthKit’s central repository is some kind of HKObjectType. 
+		⁃HKSampleType and HKWorkoutType Both inherit from HKObjectType
 
 	•HKObjectType.characteristicType(forIdentifier:) or HKObjectType.quantityType(forIdentifier:) : 
 	
-	⁃	Used to create an HKObjectType for a given biological characteristic or quantity
-	⁃	characteristic types and the quantity types are both enums defined by the framework
+		⁃Used to create an HKObjectType for a given biological characteristic or quantity
+		⁃characteristic types and the quantity types are both enums defined by the framework
 
 If a single characteristic or sample type is not available, the method will complete with an error because your app should always know exactly which HealthKit types it can work with, if any at all.
 
@@ -77,32 +77,26 @@ If a single characteristic or sample type is not available, the method will comp
 
 	•	HKSampleType:
 	
-	⁃	HealthKit expects a set of HKSampleType objects that represent the kinds of data your user can write
-	⁃	 it also expects a set of HKObjectType objects for your app to read
+		⁃	HealthKit expects a set of HKSampleType objects that represent the kinds of data your user can write
+		⁃	 it also expects a set of HKObjectType objects for your app to read
 
 	•	HKObjectType.workoutType():
 	
-	⁃	a special kind of HKObjectType
-	⁃	represents any kind of workout
+		⁃	a special kind of HKObjectType
+		⁃	represents any kind of workout
 
 4. Request Authorization :
 
-	⁃	request authorization from HealthKit and then call your completion handler. 
-	⁃	use the success and error variables passed in from HKHealthStore’s requestAuthorization(toShare: read: completion:) method.
-	⁃	On authorization screen pop up, turn on all the switches, scrolling the screen to see all of them, and click Allow.
-	⁃	Now the app has access to HealthKit’s central repository and we can start tracking things.
+		⁃request authorization from HealthKit and then call your completion handler. 
+		⁃use the success and error variables passed in from HKHealthStore’s requestAuthorization(toShare: read: completion:) method.
+		⁃On authorization screen pop up, turn on all the switches, scrolling the screen to see all of them, and click Allow.
+		⁃Now the app has access to HealthKit’s central repository and we can start tracking things.
 
 ￼
 
 
 
 (2) HOW TO READ FROM HEALTHKIT
-
-
-LIFECYCLE :
-
-￼
-
 
 
 CHARACTERISTICS AND SAMPLES:
@@ -117,12 +111,14 @@ CHARACTERISTICS AND SAMPLES:
 (A) READ BIOLOGICAL CHARACTERISTICS:
 
 SAVE BIOLOGICAL CHARACTERISTICS IN HEALTHKIT
+
 	1.	Open the Health App on your device or in the simulator. 
 	2.	Select the Health Data tab. 
 	3.	Then tap on the profile icon in the top right hand corner to view your health profile. 
 	4.	Hit Edit, and enter information for Date of Birth, Sex, Blood Type
 
 READ THOSE CHARACTERISTICS INTO YOUR APPLICATION
+
 	1.	Create an instance of HKHealthStore
 	2.	Access different biological characteristics using healthKitStore.dateOfBirthComponents() , healthKitStore.biologicalSex(), healthKitStore.bloodType() and so on. These method can throw an error whenever the date of birth, biological sex, or blood type haven’t been saved in HealthKit’s central repository. If you have entered this information into your Health app, no error should be thrown.
 	3.	You may use Calendar to calculate age using current date and dat of birth 
@@ -132,6 +128,7 @@ READ THOSE CHARACTERISTICS INTO YOUR APPLICATION
        from a wrapper class (HKBiologicalSexObject and HKBloodTypeObject).
 
 UPDATING THE USER INTERFACE
+
 	1.	load the biological characteristics into the user interface.
 	2.	sets those fields on a local instance of the UserHealthProfile model
 	3.	it updates the user interface with the new fields on UserHealthProfile
@@ -177,9 +174,9 @@ DISPLAYING SAMPLES ON USER INTERFACE
 
 In the sample application , 
 
-Navigate to Profile & BMI. 
-Then tap the Read HealthKit Data button.
-Body Mass Index isn’t actually stored on the UserHealthProfile model. It’s a computed property that does the calculation
+	Navigate to Profile & BMI. 
+	Then tap the Read HealthKit Data button.
+	Body Mass Index isn’t actually stored on the UserHealthProfile model. It’s a computed property that does the calculation
 
 
 (3) HOW TO SAVE SAMPLES TO HEALTHKIT
@@ -189,11 +186,12 @@ Body Mass Index isn’t actually stored on the UserHealthProfile model. It’s a
 	3.	HKHealthStore saves the sample and lets you know if the process was successful
 
 In the sample app, 
-	1.	Go into the Profile & BMI screen. 
-	2.	Load your data from HeathKit, then tap the Save BMI button.
+Go into the Profile & BMI screen. 
+Load your data from HeathKit, then tap the Save BMI button.
 
 
 To check in Health Application, 
+
 	1.	Open the Health app
 	2.	tap the Health Data tab
 	3.	Tap on Body Measurements in the table view, and then tap on Body Mass Index.
@@ -287,6 +285,7 @@ How to update user interface after loading required workouts from HealthKit?
 	2.	Reload the tableview and populate the cells using properties of workout such as start date , end date  , totalEnergyBurned, etc.
 
 In the sample app , 
+
 	1.	Go to Prancercise Workouts
 	2.	Tap the + button, track a short Prancercise workout
 	3.	tap Done and take a look at the table view.
@@ -295,27 +294,32 @@ In the sample app ,
 WORKOUTS COMPOSED OF INTERVALS
 
 Adding Samples to Workouts
+
 	⁃	With samples, you can record many exercise intervals under the same workout. 
 	⁃	It’s a way to give HealthKit a more detailed view of what you did during your workout routine.
 	⁃	You can add all kinds of samples to a workout. If you want, you can add distance, calories burned, heart rate and more.
 	⁃	The sample app will focus on calorie burn samples.
 
 Making Model Updates
+
 	⁃	A single Workout becomes a wrapper or container for the workout intervals that store the starts and stops you took during your routine.
 	⁃	a full Workout session is composed of an array of PrancerciseWorkoutInterval values. The workout starts when the first item in the array starts, and it ends when the last item in the array ends.
 
 Workout Sessions
+
 	1.	Create an array of  WorkoutInterval model class values:
 	2.	Every time you stop the workout, a new workoutInterval with the current start and stop dates gets added to the list.  The start and end dates get reset every time a Prancercise session begins and ends.
 	3.	Clear out the array whenever the workout session needs to get cleared using removeAll().
 
-In the sample app , once the user taps Done to save the workout, 
+In the sample app , 
+once the user taps Done to save the workout, 
 A full workout entity is generated using the intervals recorded during the many sessions.
 
 Adding Samples While Saving a Workout
-Although the app records accurate Prancercise workouts to HealthKit, there aren’t any samples attached. We need a way to convert PrancerciseWorkoutIntervals into samples.
-	1.	Prepares a list of samples using your Prancercise workout.
-	2.	Add them to the workout builder as we’ve done before.
+
+	Although the app records accurate Prancercise workouts to HealthKit, there aren’t any samples attached. We need a way to convert PrancerciseWorkoutIntervals into samples.
+		1.	Prepares a list of samples using your Prancercise workout.
+		2.	Add them to the workout builder as we’ve done before.
 
 
 
