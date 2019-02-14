@@ -11,8 +11,11 @@ PART I : How to request permission to access HealthKit data, as well as read and
 (A) SETUP:
 
 • Assigning a Team
+
 HealthKit is a special framework. Your app can’t use it unless you have an active developer account. Once you have a developer account, you can assign your team.
+
 • Entitlements
+
 HealthKit also has its own set of entitlements, and you will need to enable them in order to build apps that use the framework.
 Open the Capabilities tab in the target editor, and turn on the HealthKit switch
 
@@ -27,6 +30,7 @@ Updating the Share Usage Descriptions
 First, you need to describe why you are asking for health metrics from your users.
 
 Open Info.plist and  add the following keys:
+
 •Privacy – Health Share Usage Description : corresponds to data to be read from HealthKit.
 •Privacy – Health Update Usage Description :  corresponds to data that gets written to HealthKit.
 
@@ -45,17 +49,25 @@ To authorize HealthKit, the authorizeHealthKit(completion:) method will need to 
 
 
 1. Checking HealthKit availability
-	•	HKHealthStore :  It represents the central repository that stores a user’s health-related data. 
-	•	isHealthDataAvailable() method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
+
+•HKHealthStore :  
+
+It represents the central repository that stores a user’s health-related data. 
+
+•isHealthDataAvailable() 
+
+method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
 
 2. Preparing data types 
 
-	•	HKObjectType : 
+	•HKObjectType : 
+	
 	⁃	HealthKit works with a type called HKObjectType. 
 	⁃	Every type that goes into and out HealthKit’s central repository is some kind of HKObjectType. 
 	⁃	HKSampleType and HKWorkoutType Both inherit from HKObjectType
 
-	•	HKObjectType.characteristicType(forIdentifier:) or HKObjectType.quantityType(forIdentifier:) : 
+	•HKObjectType.characteristicType(forIdentifier:) or HKObjectType.quantityType(forIdentifier:) : 
+	
 	⁃	Used to create an HKObjectType for a given biological characteristic or quantity
 	⁃	characteristic types and the quantity types are both enums defined by the framework
 
@@ -64,10 +76,12 @@ If a single characteristic or sample type is not available, the method will comp
 3. Preparing a list of data types to read and write:
 
 	•	HKSampleType:
+	
 	⁃	HealthKit expects a set of HKSampleType objects that represent the kinds of data your user can write
 	⁃	 it also expects a set of HKObjectType objects for your app to read
 
 	•	HKObjectType.workoutType():
+	
 	⁃	a special kind of HKObjectType
 	⁃	represents any kind of workout
 
@@ -133,6 +147,7 @@ If you entered your information into the Health app earlier, it should appear in
 Samples use HKQuery, more specifically HKSampleQuery.
 
 SAVE SAMPLES IN HEALTHKIT
+
 	1.	Open the Health App on your device or in the simulator. 
 	2.	Select the Health Data tab. 
 	3.	Then tap on the Body Measurements in the table at the bottom.
@@ -140,6 +155,7 @@ SAVE SAMPLES IN HEALTHKIT
 	5.	Tap the + icon on top and record the value and press Add
 
 QUERY SAMPLES FROM HEALTHKIT
+
 	1.	Specify the type of sample you want to query (weight, height, etc.) using HKSampleType enum
 	2.	Specify some additional parameters to help filter and sort the data. You can use HKQuery.predicateForSamples(withStart: , end: , options: ) or any other predicate method to filter and NSSortDescriptor(key: , ascending:)  for sorting.
 	3.	Setup you query using  HKSampleQuery(sampleType: , predicate: , limit: , sortDescriptors: , resultsHandler: )
@@ -153,6 +169,7 @@ IMPORTANT :  Querying samples from HealthKit is an asynchronous process. That is
 
 
 DISPLAYING SAMPLES ON USER INTERFACE
+
 	1.	create the type of sample you want to retrieve using HKSampleType.quantityType(forIdentifier: )
 	2.	ask HealthKit for it
 	3.	do some unit conversions
@@ -181,7 +198,7 @@ To check in Health Application,
 	2.	tap the Health Data tab
 	3.	Tap on Body Measurements in the table view, and then tap on Body Mass Index.
 	4.	you should see a data point like this one
-	5.	
+		
 ￼
 
 
@@ -189,6 +206,7 @@ To check in Health Application,
 PART 2: WORKOUTS
 
 	•	In your day-to-day life, 
+	
 	⁃	 It’s some period of time in which you increase physical exertion doing some sort of activity.
 	⁃	Most workouts have one more of the following attributes:
 	1.	Activity type (running, cycling, Prancercising, etc.)
@@ -198,6 +216,7 @@ PART 2: WORKOUTS
 	5.	Energy burned
 
 	•	HealthKit 
+	
 	⁃	A workout is a container for these types of information, taken as a collection of samples. 
 	⁃	A given workout might contain heart rate samples, distance samples and an activity type to categorize them.
 
