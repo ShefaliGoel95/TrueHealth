@@ -234,7 +234,8 @@ NOTE:  you can tell HealthKit (when creating the HKWorkoutBuilder) what device t
 
 
 
-(2) QUERYING WORKOUTS 
+(2) QUERYING WORKOUTS
+
 How to load workouts from HealthKit?
 
 	1. Get all workouts with the "Other" activity type.
@@ -243,7 +244,7 @@ How to load workouts from HealthKit?
 	4. Sort the returned samples . 
 	5. Initiate the query.
 
-FUNCTIONS :
+Functions :
 
 	•HKQuery.predicateForWorkouts(with:) 
 
