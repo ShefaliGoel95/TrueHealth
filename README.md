@@ -50,13 +50,13 @@ To authorize HealthKit, the authorizeHealthKit(completion:) method will need to 
 
 1. Checking HealthKit availability
 
-•HKHealthStore :  
+	•HKHealthStore :  
 
-It represents the central repository that stores a user’s health-related data. 
+		It represents the central repository that stores a user’s health-related data. 
 
-•isHealthDataAvailable() 
+	•isHealthDataAvailable() :
 
-method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
+	method helps you figure out if the user’s current device supports HeathKit data, if HealthKit isn’t available on the device, the method completes with the notAvailableOnDevice error. 
 
 2. Preparing data types 
 
